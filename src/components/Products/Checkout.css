@@ -1,0 +1,346 @@
+.checkout-body{
+  
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f5f5f5;
+}
+a{
+  color: #ffffff;
+}
+.left {
+  margin: auto;
+  flex: 2;
+  width: 50%;
+  margin-left: 40px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.right {
+  margin-top: 39px;
+  margin-right: 5vw;
+  height: 100%;
+  flex: 1;
+  border: solid #ffffff 1px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  letter-spacing: normal;
+}
+
+.orderTitle {
+  background-color: #ffffff;
+  letter-spacing: normal;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 20px;
+  font-family: "Roboto";
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px rgb(147, 144, 144);
+}
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 6px;
+  border-bottom: solid thin #f0f0f0;
+}
+.cart-img {
+  margin-left: 20px;
+  margin-top: 13px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  height: 60px;
+  width: 60px;
+}
+.cart-img > img {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+}
+.cart-info {
+  margin-right: 8px;
+  margin-top: 12px;
+  margin-bottom: 36px;
+  margin-left: 8px;
+  font-size: 16px;
+  text-align: start;
+  line-height: 18px;
+  letter-spacing: normal;
+}
+.p-price {
+  color: #f68b1e;
+}
+.qty-n {
+  color: #808080;
+}
+.qty-n > span {
+  color: #000;
+}
+.cartSummary {
+  margin: 16px 8px 0px 0px;
+}
+.summaryItem {
+  margin-bottom: 8px;
+  font-size: 14px;
+  letter-spacing: normal;
+  text-align: start;
+}
+.summaryItem p {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 12px;
+  font-size: 16px;
+}
+.summaryItem p > span {
+  text-align: right;
+  letter-spacing: normal;
+  line-height: 20px;
+  color: #000;
+  font-weight: 500;
+}
+.summary-total {
+  margin-top: 10px;
+}
+.summary-total p {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 8px 0px 8px;
+  border-bottom: solid 1px #f0f0f0;
+}
+.last-item {
+  margin-top: 8px;
+  border-bottom: solid 1px #f0f0f0;
+  padding-bottom: 8px;
+  
+}
+.modify 
+{
+  align-items: flex-start;
+  background-color: #f17e0a;
+  border-color: #f17e0a;
+  border-style: solid;
+  border-width:1px ;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  margin: 20px 46px 18px 46px;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor:  pointer;
+}
+.adress ,.deliveryInfo,.paymentInfo{
+  letter-spacing: normal;
+  line-height: 21px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  font-size: 14px;
+  border-color: #f0f0f0;
+  border-style: solid none none;
+  border-width: 1px 0px 0px;
+  color: #555555;
+  padding: 16px 46px;
+  margin: 8px;
+}
+.address-title div {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 0px 0px 0px 16px;
+
+  
+}
+.address-title {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 0;
+  font-size: 0;
+  padding: 10px;
+  
+}
+
+.address-title div > p,
+.change a {
+  text-align: start;
+  line-height: 0;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  color: #f17e0a;
+  line-height: 20px;
+  padding: 0px 0px 0px 16px;
+  
+}
+.completeicon {
+  height: 20px;
+  width: 20px;
+  margin-left: 8px;
+  background-color: #a3fc62;
+  border-radius: 50%;
+}
+.address-details,.delivery-info,.payment-info {
+  margin: 16px 46px 16px 6px;
+  line-height: 21px;
+  text-align: start;
+  letter-spacing: normal;
+}
+.address-item,.delivery-item {
+  
+  font-size: 13px;
+  text-align: start;
+  letter-spacing: normal;
+  color: #808080;
+  line-height: 19.5px;
+}
+.address-name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #000000;
+}
+.change{
+    color: orange;
+}
+.delivery-details{
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    color: #555555;
+    font-size: 14px;
+    line-height: 21px;
+    margin: 10px 0px 0px;
+    padding: 10px;
+}
+.delivery-title{
+    margin-bottom:4px;
+    font-size: 14px;
+    color: #000;
+    line-height: 21px;
+    text-align: start;
+    letter-spacing: normal;
+
+}
+.details-info{
+  color: #808080;
+  font-size: 14px;
+  line-height: 21px;
+}
+.payment-choice{
+    display: flex;
+    flex-direction: column;
+}
+.payment-item{
+    display: flex;
+    flex-direction: row;
+    color: #555555;
+    font-size: 14px;
+    line-height: 21px;
+    padding: 8px;
+    
+} 
+.payment-item label{
+  
+  margin: 0px 24px 21px 30px;
+  font-size: 14px;
+  font-weight: 500px;
+  line-height: 21px;
+}
+.choice{
+  -ms-transform: scale(1.5); /* IE 9 */
+ -webkit-transform: scale(1.5);
+  transform: scale(2);
+  margin-top: 8px;
+  outline: none;
+  
+  
+}
+.choice:after{
+  content:'';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  
+}
+.payment-desc{
+  color: #808080;
+  font-size: 13px;
+  line-height: 20px;
+  margin: 40px 0px 0px;
+  padding: 0px 0px 0px 30px;
+}.payment-desc ul{
+  margin-left: 30px;
+  line-height: 19.5px;
+  font-size: 13px;
+  width: 100%;
+
+}
+.payment-desc ul ol{
+  width: 100%;
+  list-style-type: circle;
+  padding: 4px;
+}
+.payment-group{
+  border-bottom: solid 1px #f0f0f0;
+  border-radius: 4px;
+}
+.large{
+  margin: 20px 0px 0px 0px;
+  align-items: center;
+  width: 100%;
+  
+}
+@media screen and (max-width: 560px) {
+  .checkout-body {
+    flex-direction: column-reverse;
+    
+    align-items:stretch;
+  }
+  .left{
+    
+    margin: auto;
+    width: 100%;
+    padding: 0;
+  }
+  .right{
+    width: 98%;
+    margin: 20px 1%;
+  }
+  .adress ,.deliveryInfo,.paymentInfo{
+    margin: 2px 8px;
+    border-radius: 0px;
+}
+.address-title{
+  padding: 0;
+  align-items: baseline;
+  
+
+  
+}
+.completeicon{
+  display: none;
+  visibility: hidden;
+  
+}
+.address-title div p{
+  text-align: start;
+  align-items: flex-start;
+}
+  
+}

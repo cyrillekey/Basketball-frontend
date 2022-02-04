@@ -1,0 +1,68 @@
+.wrap{
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.modalb {
+    position: fixed;
+    background-color: #fff;
+    padding: 2em 3em;
+    text-align: center;
+    border-radius: 0.5em;
+    z-index: 100;
+    border: solid black thin;
+    top: 25%;
+    display: none;
+
+}
+  .modalb .modal.is-active {
+    display: block;
+  }
+  
+  .modalb .modal-image {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #48DB71;
+    padding: 11px 10px 2px;
+    margin-bottom: 2em;
+  }
+  
+ .modalb h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+  
+.modalb  p {
+    margin-bottom: 2em;
+    color: #666;
+  }
+  
+.modal b .btn-open {
+    display: none;
+  }
+.modal b  .btn-open.is-active {
+    display: block;
+  }
+  
+.modalb  button {
+    font-size: 1.25em;
+    font-weight: bold;
+    background-color: #000;
+    border: none;
+    padding: 0.5em 1em;
+    color: #fff;
+    box-shadow: 0 0 0 2px #000 inset;
+    border-radius: 0.25em;
+    cursor: pointer;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+.modal-b  button:hover {
+    box-shadow: 0 0 0 2px #000 inset;
+    color: #000;
+    background-color: transparent;
+  }
