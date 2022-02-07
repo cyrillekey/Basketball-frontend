@@ -1,5 +1,5 @@
 
-import { ADD_CART, ADD_PRODUCTS, CHANGE_QTY, CHOOSE_SHIPPING, REMOVE_PRODUCT, SAVE_ADDRESS,SAVE_PACKAGING } from "../constants/action-types";
+import { ADD_CART, ADD_PRODUCTS, CHANGE_QTY, CHOOSE_SHIPPING, REMOVE_PRODUCT, SAVE_ADDRESS,SAVE_PACKAGING, SAVE_USER } from "../constants/action-types";
 
 export const addToCart=(payload)=>{
     return{type:ADD_CART,payload}
@@ -23,4 +23,7 @@ export const saveAddress=(payload)=>{
 }
 export const savePackaging=(payload)=>{
     return {type:SAVE_PACKAGING,payload}
+}
+export const saveUser=(payload)=>{
+    return {type:SAVE_USER,payload}
 }

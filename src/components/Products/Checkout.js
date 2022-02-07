@@ -1,15 +1,13 @@
-import React,{useState,} from 'react'
+import React,{useState,useEffect} from 'react'
 
-import { PayPalButton } from "react-paypal-button-v2";
 import { useSelector ,useDispatch} from 'react-redux';
 import './Checkout.css'
 import axios from 'axios';
 import Auth from '../../Auth';
-import { Link ,useNavigate} from 'react-router-dom';
+import { Link ,Navigate,useNavigate} from 'react-router-dom';
 import { saveAddress } from '../../actions';
 import { getNextDayOfTheWeek } from '../../constants/functions';
 const Checkout = () => {
-
     const auth=Auth
     const navigate=useNavigate();
     const dispatch=useDispatch();
@@ -34,17 +32,20 @@ const Checkout = () => {
     const address=useSelector(state=>state.address);
     const packaging=useSelector(state=>state.packaging);
     let manifest="";
-    orders.forEach(order => {
-      manifest+=(order.sizeId+":"+order.qty+",")
-    });
-    console.log(manifest);
+    
+    
     const [status, setstatus] = useState("false");
     const [message, setmessage] = useState("Place order");
     const handleCashOnDelivery=(e)=>{
         e.preventDefault();
-        let order=null;
-        setmessage("");
-        setstatus("border");
+        orders.forEach(order => {
+          
+          manifest+=(order.sizeId+":"+order.qty+",")
+        });
+        
+         let order=null;
+         setmessage("Placing...");
+         setstatus("border");
         let data = JSON.stringify({
             "orderPrice": total()+shipping+packaging,
             "orderQuantity": qty(),
@@ -63,12 +64,56 @@ const Checkout = () => {
           };
           axios(config).then(response=>{
               order=response.data
+              let data=new FormData();
+              data.append('manifest',manifest);
+              var config = {
+                method: 'post',
+                url: '/add-items-to-order/'+order,
+                headers: { 
+                  'Authorization': 'Bearer '+auth.getToken(), 
+                  'Content-Type': 'application/json', 
+                  
+                },
+                data : data
+              };
+              axios(config).then(response=>{
+                axios({
+                  method:'post',
+                  url:'/create-shipping/'+parseInt(order)+'/'+address.addressid,
+                  data:{
+                    shippingCost:shipping,
+                    shippingMethod:"Delivery",
+                    packagingCost:packaging,
+                    shippingDate:getNextDayOfTheWeek("sat")
+                  },
+                  
+                  
+              }).then(res=>{
+                setmessage("Order placed!")
+                navigate("/success/"+order);
+              }).catch(error=>{
+                console.log(response)
+              });
+                
+                
+              }).catch(response=>{
+                // axios.get('/delete-order/'+order).then(response=>{
+                  
+                // }).catch(response=>{
+                  
+                // })
+                console.log(response)
+                //setmessage("error occured adding products");
+                
+              });
               
           }).catch(response=>{
               console.log(response)
+              setmessage("Error occured placing order")
           })
           
     }
+    
     return (
             <div className="checkout-body">
             <div className="left">
@@ -103,7 +148,7 @@ const Checkout = () => {
               </div>
               <div className="delivery-info">
                 <div className="address-item address-name">Pickup </div>
-                <div className="address-item">Will be shipped on <b>{getNextDayOfTheWeek("sat")}</b> and ready for pick up on <b>{getNextDayOfTheWeek("monday")}</b> </div>
+                <div className="address-item">Will be shipped on <b>{getNextDayOfTheWeek("sat").toString()}</b> and ready for pick up on <b>{getNextDayOfTheWeek("monday").toString()}</b> </div>
                 <div className="address-item">
                     <div className="delivery-details">
                         <div className="delivery-title">Shipping to: {address.city}</div>
@@ -152,8 +197,8 @@ const Checkout = () => {
                 </div>                  
             </div>
               </div>
-              <div className="modify large">
-                <a className="" onClick={(e)=>{handleCashOnDelivery(e)}}>Place Order</a>
+              <div className="modify large" onClick={(e)=>{handleCashOnDelivery(e)}}>
+                <span>{message}</span>
               </div>
         </div>
       </div>

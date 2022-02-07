@@ -5,6 +5,8 @@ import axios from 'axios'
 import ModalB from '../ModalBoxes/Modal'
 import Auth from "../../Auth";
 import { Facebook, Instagram, Twitter,Mail,RemoveRedEyeRounded } from "@material-ui/icons";
+import { useDispatch } from "react-redux";
+import { saveUser } from "../../actions";
 const Login=(props)=>{
 	const auth=Auth
 	const [errorModal,SetErrorModal]=useState({
@@ -14,7 +16,7 @@ const Login=(props)=>{
 		message:"Login"
 	});
 	const Navigate=useNavigate();
-	
+	const dispatch=useDispatch();
 	
     useEffect(() => {
         
@@ -45,6 +47,7 @@ const Login=(props)=>{
 	d.setTime(d.getTime()+(10*60*60*1000))
   document.cookie=("token="+response.data.token+";expires="+d.toUTCString());
   localStorage.setItem("user",response.data.userid)
+  dispatch(saveUser({user:response.data.user}))
   Navigate(-1)
 })
 .catch(response=>{

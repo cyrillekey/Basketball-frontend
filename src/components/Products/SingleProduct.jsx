@@ -65,30 +65,10 @@ const SingleProduct = () => {
 
                             <h2 className="title">{singleProduct.productName}</h2>
                             <p className="category"><i className="lni lni-tag"></i> Type<a href="">{singleProduct.category}</a></p>
-                            <h3 className="price">KES {singleProduct.productPrice}<span>KES {singleProduct.productPrice*1.25}</span></h3>
+                            
                             <p className="info-text">{singleProduct.productDesc}</p>
                             <div className="row">
-                                <div className="col-lg-4 col-md-4 col-12">
-                                    <div className="form-group color-option">
-                                        <label className="title-label" htmlFor="size">Choose color</label>
-                                        <div className="single-checkbox checkbox-style-1">
-                                            <input type="checkbox" id="checkbox-1"/>
-                                            <label htmlFor="checkbox-1"><span></span></label>
-                                        </div>
-                                        <div className="single-checkbox checkbox-style-2">
-                                            <input type="checkbox" id="checkbox-2"/>
-                                            <label htmlFor="checkbox-2"><span></span></label>
-                                        </div>
-                                        <div className="single-checkbox checkbox-style-3">
-                                            <input type="checkbox" id="checkbox-3"/>
-                                            <label htmlFor="checkbox-3"><span></span></label>
-                                        </div>
-                                        <div className="single-checkbox checkbox-style-4">
-                                            <input type="checkbox" id="checkbox-4"/>
-                                            <label htmlFor="checkbox-4"><span></span></label>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div className="col-lg-4 col-md-4 col-12">
                                     <div className="form-group">
                                         <label htmlFor="color">Size</label>

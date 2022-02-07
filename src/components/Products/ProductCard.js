@@ -9,14 +9,14 @@ const ProductCard = (props) => {
     e.preventDefault();
     setadded("added");
     dispatch(
-      addToCart({ id: e.target.id, url: "", price: "", qty: 1, name: "",size:props.sizeName,sizeId:props.SizeId })
+      addToCart({ id: e.target.id, url: "", price: "", qty: 1, name: "",size:props.sizeName,sizeId:props.sizeId })
     );
     setTimeout(function () {
       setadded(" ");
     }, 2500);
   };
   const [added, setadded] = useState("");
-
+  
   return (
     <div className="col-lg-3 col-md-6 col-12">
       <div className="single-product">

@@ -1,6 +1,7 @@
-import { ADD_CART,ADD_PRODUCTS,CHANGE_QTY, CHOOSE_SHIPPING, REMOVE_PRODUCT, SAVE_ADDRESS, SAVE_PACKAGING } from "../constants/action-types";
+import { ADD_CART,ADD_PRODUCTS,CHANGE_QTY, CHOOSE_SHIPPING, REMOVE_PRODUCT, SAVE_ADDRESS, SAVE_PACKAGING,SAVE_USER } from "../constants/action-types";
 
 const initialState={
+    
     products:[],
     items:[],
     addedItems:[],
@@ -38,11 +39,10 @@ const CartReducer=(state=initialState,action)=>{
                 action.payload.name=products.productName
                 return{...state,items:([action.payload]),total:(state.total)+(action.payload.qty)} 
             } }else{
-                console.log(products)
-                console.log("breaks here")
+                
                 return {...state}
             }
-            break;
+            
             case CHANGE_QTY:
                 let qty=action.payload.qty    
             if(!isNaN(qty)){
@@ -63,27 +63,25 @@ const CartReducer=(state=initialState,action)=>{
                 const newDelArray=[...state.items]
                 
                 let ind=state.items.indexOf(exists)
-                console.log(ind)
-                console.log(newDelArray)
                 let totals=state.total-(newDelArray[ind].qty);
                 
                 newDelArray.splice(ind,1)
-                console.log(newDelArray)
+                
                 return {...state,items:newDelArray,total:(totals)}    
                 }
         
             case REMOVE_PRODUCT:
                 let pid1=action.payload.id;
-                console.log(pid1)
+                
                 let exists1=state.items.find(item=>item.id===pid1)
                 const newDelArray1=[...state.items]
                 
                 let ind1=state.items.indexOf(exists1)
-                console.log(newDelArray1)
+                
                 let totals=state.total-(newDelArray1[ind1].qty);
                 
                 newDelArray1.splice(ind1,1)
-                console.log(newDelArray1)
+                
                 return {...state,items:newDelArray1,total:(totals)}
             case CHOOSE_SHIPPING:
                 return{...state,shipping:Number(action.payload.shipping)}  
@@ -93,7 +91,10 @@ const CartReducer=(state=initialState,action)=>{
                 
                 return{...state,address:action.payload.address}    
             case SAVE_PACKAGING:
-                return {...state,packaging:action.payload.packaging}      
+                return {...state,packaging:action.payload.packaging}     
+            case SAVE_USER:
+                
+                return {...state,user:action.payload.user}     
             default:
                 return state;
     }

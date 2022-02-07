@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 import {addProducts, saveAddress} from '../../actions'
-import { AccountCircle, Close, Facebook, Home, Instagram, Search,  ShoppingCart, Twitter,AccountCircleRounded, ExitToApp, Favorite, Store, LocalShipping, FavoriteBorderOutlined, InputOutlined } from '@material-ui/icons'
+import { AccountCircle, Close, Facebook, Home, Instagram, Search,  ShoppingCart, Twitter,AccountCircleRounded, ExitToApp, Favorite, Store, LocalShipping, FavoriteBorderOutlined, InputOutlined, Telegram, Dashboard } from '@material-ui/icons'
 import { GridMenuIcon } from '@material-ui/data-grid'
 import Auth from '../../Auth';
 
@@ -32,17 +32,8 @@ let Layout=(props)=>{
             console.log("error when fetching address")
         })
     }
-    const getAddress=()=>{
-        axios.get("/adress-by-user/"+localStorage.getItem("user")).then(
-            response=>{
-                dispatch(saveAddress({address:response.data[0]}))
-                
-            }
-            
-        ).catch(response=>{
-            dispatch(saveAddress({address:[]}))
-        })
-    }
+    
+    const user=useSelector(state=>state.user)
     useEffect(()=>{
         getData();
         if(localStorage.getItem("accept")){
@@ -95,7 +86,7 @@ let Layout=(props)=>{
 
                                 </ul>
                                 <ul className="navbar_user">
-                                    <li id="search"><a href="/"><i arial-hidden="true"><Search/></i></a></li>
+                                    <li id="search"><Link to="/products"><i arial-hidden="true"><Search/></i></Link></li>
                                     <li className="checkout">
                                         <Link to="/cart" id="cart" >
                                             <i ><ShoppingCart/></i> <span id="checkout_items" className="checkout_items">
@@ -104,6 +95,8 @@ let Layout=(props)=>{
                                         </Link>
                                     </li>
                                     {signedin?<li><Link to="/account"><i><AccountCircleRounded/></i></Link></li>:""}
+                                     {signedin && user && user.accountTypes=="ADMIN"?<li id="search"><Link to="/admin/dashboard"><i arial-hidden="true"><Dashboard/></i></Link></li>:""}
+                                    
                                 </ul>
                                 <div className="hamburger_container"  >
                                     <i className="" aria-hidden="true" id="bars" ><GridMenuIcon className="grid" onClick={()=>settoggle({indexClose:999,type:'active'})}/></i>
@@ -168,7 +161,7 @@ let Layout=(props)=>{
                                 <i className="fas fa-phone"></i>
                                 <div className="cta-text">
                                     <h4>Call us</h4>
-                                    <span>+254708073370</span>
+                                    <a href='tel:+254708073370'><span>+254708073370</span></a>
                                 </div>
                             </div>
                         </div>
@@ -213,8 +206,8 @@ let Layout=(props)=>{
                                     <li><Link to="/login">Login</Link></li>
                                     <li><Link to="/tracking">Track Order</Link></li>
                                     <li><a href="#">Contact</a></li>
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Our Services</a></li>
+                                    <li><Link to="about">About us</Link></li>
+                                    <li><Link to="/policy">Terms and services</Link></li>
                                     <li><a href="#">Expert Team</a></li>
                                     <li><a href="#">Contact us</a></li>
                                     <li><Link to="/faq">Frequently Asked Questions</Link></li>
@@ -232,7 +225,7 @@ let Layout=(props)=>{
                                 <div className="subscribe-form">
                                     <form action="#">
                                         <input type="text" placeholder="Email Address"/>
-                                        <button><i className="fab fa-telegram-plane"></i></button>
+                                        <button><Telegram/></button>
                                     </form>
                                 </div>
                             </div>
@@ -252,8 +245,8 @@ let Layout=(props)=>{
                             <div className="footer-menu">
                                 <ul>
                                     <li><Link to="/">Home</Link></li>
-                                    <li><a href="#">Terms</a></li>
-                                    <li><a href="#">Privacy</a></li>
+                                    <li><Link to="/terms">Terms</Link></li>
+                                    <li><Link to="#">Privacy</Link></li>
                                     <li><Link to="/faq">Faq</Link></li>
                                     <li><a href="#">Contact</a></li>
                                 </ul>

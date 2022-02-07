@@ -62,7 +62,10 @@ const Cart = (props) => {
                     </thead>
 
                     <tbody>
-                      {items.map((item) => (
+
+                      {
+                      items.length>0?
+                      items.map((item) => (
                         <tr
                           data-index="{{product.id}}"
                           id="sepic"
@@ -112,7 +115,23 @@ const Cart = (props) => {
                             </button>
                           </td>
                         </tr>
-                      ))}
+                      )):<div class="section__content">
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 u-s-m-b-30">
+                                  <div class="empty">
+                                      <div class="empty__wrap">
+  
+                                          <span class="empty__big-text">EMPTY</span>
+  
+                                          <span class="empty__text-1">No items found on your cart.</span>
+  
+                                          <Link class="empty__redirect-link btn--e-brand btn btn-outline continue" to="/products">CONTINUE SHOPPING</Link></div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>}
                     </tbody>
                   </table>
 
@@ -137,11 +156,6 @@ const Cart = (props) => {
                         </div>
                       </form>
                     </div>
-
-                    <a href="#" className="btn btn-outline-dark-2">
-                      <span>UPDATE CART</span>
-                      <i className="icon-refresh"></i>
-                    </a>
                   </div>
                 </div>
                 <aside

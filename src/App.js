@@ -14,10 +14,12 @@ import ScrollToTop from './js/ScrollToTop';
 import {ProductsList} from './components/Dashboard/Pages/Products/ProductsList'
 import {SingleProduct as ProductDashboard}  from './components/Dashboard/Pages/Products/SingleProduct';
 import NewProduct from './components/Dashboard/Pages/Products/NewProduct';
+import { Policy } from './components/Homepage/Policy';
 import { ProtectedRoute } from './ProtectedRoutes';
-import { Spinner } from 'react-bootstrap';
 import Loader from './components/Layout/Loader';
 import { Error404 } from './components/error/error404';
+import { About } from './components/Homepage/About';
+import { ProtectedAdmin } from './ProtectedAdmin';
 const Account=React.lazy(()=>import('./components/Account/Account'));
 const Dashboard=React.lazy(()=>import('./components/Dashboard/DashBoard'))
 const Faq=React.lazy(()=>import('./components/Homepage/Faq'))
@@ -52,6 +54,7 @@ const App=(props)=> {
       <Route path="/signup" element={<Layout children={<Signup/>}/>}/>
       <Route path="/account" element={<React.Suspense fallback={<Loader/>}><Layout children={<Account/>}/></React.Suspense> }/>
       <Route path="/cart" element={<Layout children={<Cart/>}/>}/>
+      <Route path="/policy" element={<Layout children={<Policy/>} />}/>
       <Route exact path="/shipping" element={
         <React.Suspense fallback={<Loader/>}>
           <ProtectedRoute><Layout children={(<Shipping/>)}/></ProtectedRoute>
@@ -71,15 +74,23 @@ const App=(props)=> {
       <Route path="/tracking" element={<Layout children={<React.Suspense fallback={<Loader/>}>
         <Tracking/>
       </React.Suspense>}/>}/>
-      <Route path="/success" element={<ProtectedRoute><Layout children={<OrderConfirm/>}/></ProtectedRoute>}/>
-      <Route path="/faq" element={ <Layout children={<React.Suspense fallback={<Loader/>}><Faq/></React.Suspense>}/>}/>
-      <Route path="/admin/dashboard" element={<React.Suspense fallback={<Loader/>}><Dashboard children={<Home/>} /></React.Suspense>}/>
-      <Route path="/admin/userslist" element={<React.Suspense fallback={<Loader/>}><Dashboard children={<UserList/>} /></React.Suspense>}/>
-      <Route path="/admin/users/:userId" element={<React.Suspense fallback={<Loader/>}><Dashboard children={<UpdateUser/>} /></React.Suspense>}/>
-      <Route path="/admin/products" element={<React.Suspense fallback={<Loader/>}><Dashboard children={<ProductsList/>} /></React.Suspense>}/>
-      <Route path="/admin/singleproduct" element={<React.Suspense fallback={<Loader/>}><Dashboard children={<ProductDashboard/>} /></React.Suspense>}/>
-      <Route path="/admin/createproduct" element={<React.Suspense fallback={<Loader/>}><Dashboard children={<NewProduct/>} /></React.Suspense>}/>
+      <Route path="/success/:id" element={
+        <ProtectedRoute>
+        <React.Suspense fallback={<Loader/>}>
+          <Layout children={<OrderConfirm/>}/>
+        </React.Suspense>
+        </ProtectedRoute>
+      }/>
       
+      <Route path="/faq" element={ <Layout children={<React.Suspense fallback={<Loader/>}><Faq/></React.Suspense>}/>}/>
+      <Route path="/admin/dashboard" element={<ProtectedAdmin> <React.Suspense fallback={<Loader/>}><Dashboard children={<Home/>} /></React.Suspense></ProtectedAdmin>}/>
+      <Route path="/admin/userslist" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<UserList/>} /></React.Suspense></ProtectedAdmin>}/>
+      <Route path="/admin/users/:userId" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<UpdateUser/>} /></React.Suspense></ProtectedAdmin>}/>
+      <Route path="/admin/products" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<ProductsList/>} /></React.Suspense></ProtectedAdmin>}/>
+      <Route path="/admin/singleproduct" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<ProductDashboard/>} /></React.Suspense></ProtectedAdmin>}/>
+      <Route path="/admin/createproduct" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<NewProduct/>} /></React.Suspense></ProtectedAdmin>}/>
+      <Route path="/about" element={
+        <Layout children={<About/>}/>}/>
 
       <Route path="*" element={<Layout children={<Error404/>}/>}/>  
       </Routes>

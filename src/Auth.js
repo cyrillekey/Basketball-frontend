@@ -1,3 +1,5 @@
+import React from "react";
+import { useSelector } from "react-redux";
 class Auth{
     constructor(){
         this.authenticated=false
@@ -40,5 +42,6 @@ class Auth{
         }
         return this.authenticated
     }
+    
 }
 export default new Auth();

@@ -96,13 +96,13 @@ const NewProduct = props => {
                             },
                             data: data
                         };
-
+                        
                         axios(config)
                             .then(function (response) {
                                 setstatus("Product created")
                             })
-                            .catch(function (error) {
-                                console.log(error);
+                            .catch( error=> {
+                                console.log(error.response.data);
                             });
 
                     })

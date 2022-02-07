@@ -5,5 +5,5 @@ export const getNextDayOfTheWeek=(dayName, excludeToday = true, refDate = new Da
     refDate.setHours(0,0,0,0);
     refDate.setDate(refDate.getDate() + +!!excludeToday + 
                     (dayOfWeek + 7 - refDate.getDay() - +!!excludeToday) % 7);
-    return refDate.toString();
+    return refDate;
 }
