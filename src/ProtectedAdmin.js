@@ -5,7 +5,7 @@ import Auth from "./Auth";
 export const ProtectedAdmin=({children})=>{
     const user=useSelector(state=>state.user)
     const auth=Auth;
-    return auth.isAuthenticated &&user && user.accountTypes==="ADMIN" ?children:<Navigate to={{pathname:"/"}}/>;
+    return auth.isAuthenticated() && user.accountTypes=="ADMIN" ? children : <Navigate to={{pathname:"/"}}/>;
 
     
 }

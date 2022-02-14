@@ -9,7 +9,7 @@ const SideBar=()=>{
                     <h3 className="sideBarTitle">Quick Links</h3>
                     <ul className="sidebarList">
                         <li className="sideBarListName active">
-                            <Link to="/dashboard">
+                            <Link to="/admin/dashboard">
                             <LineStyle className="sideBarIcon"/>
                             Home
                             </Link>
@@ -35,14 +35,15 @@ const SideBar=()=>{
                             </Link>
                         </li>
                         <li className="sideBarListName ">
-                            <Link to="/admin/products">
+                            <Link to="/admin/listproducts">
                             <Storefront className="sideBarIcon"/>
                             Products
                             </Link>
                         </li>
                         <li className="sideBarListName">
-                            <Receipt className="sideBarIcon"/>
+                            <Link to="/admin/orderslist"><Receipt className="sideBarIcon"/>
                             Orders
+                            </Link>
                         </li>
                         <li className="sideBarListName">
                             <LocalShipping className="sideBarIcon"/>

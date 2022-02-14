@@ -1,15 +1,47 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import axios from "axios";
+import React, { useEffect,useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {Link} from 'react-router-dom'
 import Auth from '../../Auth';
-;
+import { saveUser } from "../../actions";
 
 const Account = () => {
-    const auth=Auth;
-    const user = useSelector((state) => state.user);
-    useEffect(()=>{
+  
+  useEffect(()=>{
+    let config = {
+      method: 'get',
+      url: '/find-user-by-id/'+auth.getUserId(),
+      headers: { 
+        'Authorization': 'Bearer '+auth.getToken(), 
+        'Content-Type': 'application/json', 
+        
+      },
+      
+    }
+    axios(config).then(response=>{
+      dispath(saveUser({user:response.data}));
+      
+    }).catch(response=>{
+      
+    })
 
-    },[user])
+  },[])
+  const user = useSelector((state) => state.user);
+  const [form, setform] = useState({
+      username:user.username,
+      email:user.email,
+      phoneNumber:user.phoneNumber,
+      currentPassword:"",
+      newpassword:""
+  });
+  const handleChange=(e)=>{
+    let name=e.target.name
+    let value=e.target.value
+
+  }
+    const auth=Auth;
+    
+    const dispath=useDispatch();
   
   return (
     <div className="account">
@@ -61,10 +93,10 @@ const Account = () => {
                             <p>
                               Hello, <strong>{user.username}</strong> (If Not{" "}
                               <strong>{user.username} !</strong>
-                              <a href="{% url 'logout'%}" className="logout">
-                                {" "}
+                              <span className="logout" onClick={()=>auth.logout()}>
+                                
                                 Logout
-                              </a>
+                              </span>
                               )
                             </p>
                           </div>
@@ -106,12 +138,12 @@ const Account = () => {
                                     <td>{order.orderStatus}</td>
                                     <td>Kes{order.orderPrice}</td>
                                     <td>
-                                      <a
-                                        href="cart.html"
+                                      <Link
+                                        to={`/success/${order.order_id}`}
                                         className="btn-add-to-cart"
                                       >
                                         View
-                                      </a>
+                                      </Link>
                                     </td>
                                   </tr>
                                 )):""}
@@ -193,6 +225,7 @@ const Account = () => {
                                   type="text"
                                   id="display-name"
                                   placeholder={user.username}
+                                  value={form.username}
                                 />
                               </div>
 
@@ -204,6 +237,7 @@ const Account = () => {
                                   type="email"
                                   id="email"
                                   placeholder={user.email}
+                                  value={form.email}
                                 />
                               </div>
                               <div className="single-input-item">
@@ -214,6 +248,7 @@ const Account = () => {
                                   type="tel"
                                   id="email"
                                   placeholder={user.phoneNumber}
+                                  value={form.phoneNumber}
                                 />
                               </div>
 

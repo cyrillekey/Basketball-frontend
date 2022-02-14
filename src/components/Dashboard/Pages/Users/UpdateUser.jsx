@@ -71,7 +71,7 @@ export const UpdateUser = () => {
                             <div className="updateUpload">
                                 <img src="" alt="" />
                                 <label htmlFor="file">
-                                    <Publish classname="updateIcon"/>
+                                    <Publish className="updateIcon"/>
                                 </label>
                                 <input type="file" id="file" style={{display:'none',cursor:'pointer'}} />
                             </div>

@@ -1,26 +1,55 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { DataGrid } from '@material-ui/data-grid';
 import { DeleteOutline } from '@material-ui/icons';
 import {Link} from "react-router-dom"
 import Chart from '../../Charts/Chart';
+
+import axios from 'axios';
+import Auth from '../../../../Auth';
 export const ProductsList = () => {
-    
+  
+  const [rows, setrows] = useState([]);  
+  useEffect(()=>{
+var config = {
+  method: 'get',
+  url: '/get-all-products',
+  headers: { 
+    headers: { 
+      'Content-Type': 'application/json', 
+      'Authorization': `Bearer ${Auth.getToken()}`, 
+      
+    }
+  }
+};
+axios(config)
+.then(response=> {
+  setrows(response.data)
+})
+.catch(error=> {
+  console.log(error);
+})
+  },[rows]);
 const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'JoinDate', headerName: 'JoinDate', width: 150 ,},
-    { field: 'email', headerName: 'Email', width: 130 },
+  
+    { field: 'product_id', headerName: 'ID', width: 70 },
+    { field: 'productName', headerName: 'ProductName', width: 200 ,},
+    { field: 'productPrice', headerName: 'Price(Ksh)', width: 150 },
     {
-      field: 'status',
-      headerName: 'Status',
+      field: 'category',
+      headerName: 'Category',
       width: 180, 
-    renderCell:(params)=>{
-        return(
-            <div>{params.row.JoinDate}</div>
-        );
-    } },
+     },
     {
-      field: 'type' ,
-      headerName: 'Account Type',
+      field: 'lastPurchase' ,
+      headerName: 'LastPurchase',
+      description: 'This column has a value getter and is not sortable.',
+      
+      width: 200,
+      
+    },
+    {
+      field: 'isFeature' ,
+      headerName: 'Featured',
       description: 'This column has a value getter and is not sortable.',
       
       width: 160,
@@ -33,7 +62,7 @@ const columns = [
         renderCell:(params)=>{
             return(
                 <div>
-                    <Link to={"/product/"+params.row.id}>
+                    <Link to={"/admin/singleproduct/"+params.row.product_id}>
                     <button className="userListEdit">Edit</button>
                     </Link>
                     <DeleteOutline className='userListDelete'/>
@@ -43,20 +72,19 @@ const columns = [
     }
   ];
   
-  const rows = [
-    { id: 1, UserName: 'Jon Snow', JoinDate: '122444', email: "dfd",status:"active",type:"ADMIN" },
-    { id: 2, UserName: 'Jon Snow', JoinDate: '122444', email: "dfd",status:"active",type:"ADMIN" },
-    { id: 3, UserName: 'Jon Snow', JoinDate: '122444', email: "dfd",status:"active",type:"ADMIN" },
-    { id: 4, UserName: 'Jon Snow', JoinDate: '122444', email: "dfd",status:"active",type:"ADMIN" },
-    { id: 5, UserName: 'Jon Snow', JoinDate: '122444', email: "dfd",status:"active",type:"ADMIN" },
-    { id: 6, UserName: 'Jon Snow', JoinDate: '122444', email: "dfd",status:"active",type:"ADMIN" },
-  ];
+  
   
     return (
         <div className='userList'>
-            <h1>Products</h1>
+            <div className="productTitleContainer">
+                <h1>Product</h1>
+                <Link to="/admin/createproduct">
+                <button className="productAdd">Create</button>
+                </Link>
+            </div>
         <div style={{ height: 400, width: '100%' }}>
         <DataGrid
+        getRowId={rows=>rows.product_id}
           rows={rows}
           columns={columns}
           pageSize={5}

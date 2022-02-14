@@ -20,6 +20,15 @@ class Auth{
         
         return cookie["token"]
     }
+    getUserId(){
+        let userid="";
+        userid=localStorage.getItem("user")
+        if(typeof userid ==='undefined' && userid ==null){
+            this.authenticated=false;
+            this.logout()
+        }
+        return userid;
+    }
     login(cb){
         this.authenticated=true
         cb()

@@ -131,7 +131,7 @@ const NewProduct = props => {
                 </div>
                 <div className="newItem">
                     <label htmlFor="">Product Price</label>
-                    <input type="number" placeholder='500' name="price" value={formData.price} onChange={(e) => changeData(e)} />
+                    <input type="number" placeholder='500' name="price" value={formData.price} onChange={(e) => changeData(e)} required />
                 </div>
                 <div className="newItem">
                     <label htmlFor="">Description</label>
@@ -147,15 +147,15 @@ const NewProduct = props => {
                 </div>
                 <div className="newItem">
                     <label htmlFor="">Extra Large Stock</label>
-                    <input type="number" placeholder='Lakers Jersey' name="XLstock" value={formData.stock} onChange={(e) => changeData(e)} />
+                    <input type="number" placeholder='Lakers Jersey' name="XLstock" value={formData.XLstock} onChange={(e) => changeData(e)} />
                 </div>
                 <div className="newItem">
                     <label htmlFor="">Large Size stock count</label>
-                    <input type="number" placeholder='12' name="Lstock" value={formData.stock} onChange={(e) => changeData(e)} />
+                    <input type="number" placeholder='12' name="Lstock" value={formData.Lstock} onChange={(e) => changeData(e)} />
                 </div>
                 <div className="newItem">
                     <label htmlFor="">Medium Size stock</label>
-                    <input type="number" placeholder='Lakers Jersey' name="Mstock" value={formData.stock} onChange={(e) => changeData(e)} />
+                    <input type="number" placeholder='Lakers Jersey' name="Mstock" value={formData.Mstock} onChange={(e) => changeData(e)} />
                 </div>
 
 

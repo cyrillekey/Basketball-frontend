@@ -20,7 +20,7 @@ const ModalB=(props)=>{
           <Button variant="secondary" onClick={props.handleClose}>
             Close
           </Button>
-          <Button variant="primary">Understood</Button>
+          <Button variant="primary" onClick={props.handleYes}>Understood</Button>
         </Modal.Footer>
       </Modal>
     );

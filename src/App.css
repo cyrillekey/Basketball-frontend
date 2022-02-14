@@ -449,7 +449,12 @@ h6 {
   visibility: visible;
   opacity: 1;
 }
-
+.logout{
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-decoration-color: pink;
+  text-underline-offset: 15%;
+}
 .logo-container {
   position: absolute;
   width: fit-content;

@@ -1,44 +1,33 @@
 import { Visibility } from '@material-ui/icons'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export const WidgetSmall = () => {
+export const WidgetSmall = (props) => {
     return (
         <div className='widgetsm'>
             <span className="widgetSmTitle">New members</span>
             <ul className="widgetSmList">
-                <li className="widgetSmListItem">
-                    <img src="" alt="" className="widgetSmImg" />
+                {
+                    
+                    props.users.map((user)=>(
+                        <li className="widgetSmListItem" key={user.user_id}>
+                
+                    <span className="widgetSmImg">{user.username}</span>
                     <div className="widgetSmUser">
-                        <span className="widgetSmUserName">John jones</span>
-                        <span className="widgetSmUserDate">12/12/2021</span>
+                        <span className="widgetSmUserName">{user.email}</span>
+                        <span className="widgetSmUserDate">{user.joinDate}</span>
                     </div>
-                    <button className="widgetSmButton">
+                    <Link to={`/admin/users/${user.user_id}`} className="widgetSmButton" >
                         <Visibility className="widgetSmIcon"/>
                         Display
-                    </button>
+                    </Link>
                 </li>
-                <li className="widgetSmListItem">
-                    <img src="" alt="" className="widgetSmImg" />
-                    <div className="widgetSmUser">
-                        <span className="widgetSmUserName">John jones</span>
-                        <span className="widgetSmUserDate">12/12/2021</span>
-                    </div>
-                    <button className="widgetSmButton">
-                        <Visibility className="widgetSmIcon"/>
-                        Display
-                    </button>
-                </li>
-                <li className="widgetSmListItem">
-                    <img src="" alt="" className="widgetSmImg" />
-                    <div className="widgetSmUser">
-                        <span className="widgetSmUserName">John jones</span>
-                        <span className="widgetSmUserDate">12/12/2021</span>
-                    </div>
-                    <button className="widgetSmButton">
-                        <Visibility className="widgetSmIcon"/>
-                        Display
-                    </button>
-                </li>
+                    ))
+                }
+                
+                
+                
+                
             </ul>
         </div>
     )

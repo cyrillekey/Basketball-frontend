@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import { Link } from 'react-router-dom';
 import Auxi from '../hos/Auxi';
 import ProductCard from '../Products/ProductCard';
@@ -7,11 +7,22 @@ import { Carousel } from 'react-bootstrap';
 import {LazyLoadImage} from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import Auth from '../../Auth';
+import axios from 'axios';
 const Homepage=(props)=>{
     const auth=Auth
     const products=useSelector(state=>state.products);
+    const [home, sethome] = useState({
+        banner_url:"",
+        banner_small:"",
+        carousel_image:[],
+        categories:[]
+    });
     useEffect(() => {
-      
+      axios.get("/home-page").then(reponse=>{
+          sethome(reponse.data)
+      }).catch(error=>{
+          console.log("error")
+      })
         
     
     }, [products]);
@@ -20,7 +31,7 @@ const Homepage=(props)=>{
         return(
             <Auxi>
                 
-                <div className="main_slider" style={{backgroundImage:'url(https://github.com/cyrillekey/basketball-django/blob/main/static/project-290-P9xpYfUpoZI-unsplash.jpg?raw=true)'}}>
+                <div className="main_slider" style={{backgroundImage:`url(${home.banner_url})`}}>
 <div className="container fill_hight">
     <div className="row align-items-center fill_hight">
         <div className="col">
@@ -45,37 +56,32 @@ const Homepage=(props)=>{
                     <div className="slider-head">
                     
                         <Carousel className="hero-slider" indicators={false}>
+                            {
+                                home.carousel_image.map(item=>(
+                                    <Carousel.Item className="single-slider"
+                                style={{backgroundImage:`url(${item.imageUrl})`}} key={item.product_id}>
+                                <div className="content">
+                                    <h2><span>No restocking fee </span>
+                                        
+                                        <Link to={"/product/"+ item.product_id}  
+                                        >{item.productName}</Link>
+                                    </h2>
+                                    <p style={{color:"white",textTransform:"capitalize"}}>{item.productDesc}</p>
+                                    <h3><span>Now Only</span> Ksh {item.productPrice}</h3>
+                                    <div className="button" onClick={(e)=>{
+                                        e.preventDefault();
+                                    }}>
+                                        <Link to={"/product/"+ item.product_id} className="btn" 
+                                        >Shop Now</Link>
+                                        
+                                    </div>
+                                </div>
+                            </Carousel.Item>
+                                ))
+                            }
                             
-                            <Carousel.Item className="single-slider"
-                                style={{backgroundImage:'url(https://github.com/cyrillekey/basketball-django/blob/main/static/project-290-P9xpYfUpoZI-unsplash.jpg?raw=true)'}}>
-                                <div className="content">
-                                    <h2><span>No restocking fee </span>
-                                        newproduct.product_name
-                                    </h2>
-                                    <p style={{color:"white",textTransform:"capitalize"}}>newproduct.product_description</p>
-                                    <h3><span>Now Only</span> Ksh newproduct.product_price</h3>
-                                    <div className="button">
-                                        <a href="/" className="btn" onClick={(e)=>{
-                                            e.preventDefault();
-                                        }}>Shop Now</a>
-                                    </div>
-                                </div>
-                            </Carousel.Item>
-                            <Carousel.Item className="single-slider"
-                                style={{backgroundImage:'url(https://github.com/cyrillekey/basketball-django/blob/main/static/project-290-P9xpYfUpoZI-unsplash.jpg?raw=true)'}}>
-                                <div className="content">
-                                    <h2><span>No restocking fee </span>
-                                        newproduct.product_name
-                                    </h2>
-                                    <p style={{color:"white",textTransform:"capitalize"}}>newproduct.product_description</p>
-                                    <h3><span>Now Only</span> Ksh 140</h3>
-                                    <div className="button">
-                                        <a href="/" className="btn" onClick={(e)=>{
-                                            e.preventDefault();
-                                        }}>Shop Now</a>
-                                    </div>
-                                </div>
-                            </Carousel.Item>
+                            
+                            
                         </Carousel>
                         
                     </div>
@@ -85,7 +91,7 @@ const Homepage=(props)=>{
                         <div className="col-lg-12 col-md-6 col-12 md-custom-padding">
 
                             <div className="hero-small-banner"
-                                style={{backgroundImage:'url(https://github.com/cyrillekey/basketball-django/blob/main/static/project-290-P9xpYfUpoZI-unsplash.jpg?raw=true)'}}>
+                                style={{backgroundImage:`url(${home.banner_small})`}}>
                                 <div className="content">
                                     <h2>
                                         <span>New line required</span>
@@ -131,7 +137,7 @@ const Homepage=(props)=>{
     <div className="row homep" >
 
             {
-                products.map(product=>(
+                products.slice(0,4).map(product=>(
                     
                     <ProductCard key={product.product_id} name={product.productName} pid={product.product_id} price={product.productPrice} category={product.category} url={product.imageUrl}
                     sizeId={product.list_sizes[0].product_sizes_id} sizeName={product.list_sizes[0].size.size_symbol}
@@ -152,40 +158,20 @@ const Homepage=(props)=>{
     <div className="d-flex justify-content-center align-items-center mt-8"> <h1 className="" style={{fontWeight:600,fontSize:'36px',textAlign:'center'}}>OUR CATEGORIES</h1> </div>
     <div className="d-flex justify-content-center mt-3"> <span className="text text-center" style={{fontSize:'18px'}}>Finding Best Products Now<br/> in Your Fingertips</span> </div>
     <div className="row mt-2 g-4">
-        <div className="col-md-3">
-            <div className="card p-1">
-                <div className="d-flex justify-content-between align-items-center p-2">
-                    <div className="flex-column lh-1 imagename"> <span>Mobile</span> <span>Phones</span> </div>
-                    <div> <LazyLoadImage src="https://i.imgur.com/b9zkoz0.jpg" height="100" width="100" alt="product" effect='blur'/> </div>
+        {
+            
+            home.categories.map(item=>(
+                <div className="col-md-3" key={item}>
+                <div className="card p-2">
+                    <div className="d-flex justify-content-between align-items-center p-2">
+                        <div className="flex-column lh-1 imagename"> {item} </div>
+                        <div> <LazyLoadImage src="https://i.imgur.com/2gvGwbh.png" height="100" width="100" alt="product" effect='blur'/> </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div className="col-md-3">
-            <div className="card p-2">
-                <div className="d-flex justify-content-between align-items-center p-2">
-                    <div className="flex-column lh-1 imagename"> <span>Head</span> <span>Phones</span> </div>
-                    <div> <LazyLoadImage src="https://i.imgur.com/SHWASPG.png" height="100" width="100" alt="product" effect='blur'/> </div>
-                </div>
-            </div>
-        </div>
-        <div className="col-md-3">
-            <Link to="/">
-            <div className="card p-2">
-                <div className="d-flex justify-content-between align-items-center p-2">
-                    <div className="flex-column lh-1 imagename"> <span>Smart</span> <span>Watches</span> </div>
-                    <div> <LazyLoadImage src=" https://i.imgur.com/Ya0OXCv.png" height="100" width="100" alt="product" effect='blur'/> </div>
-                </div>
-            </div>
-            </Link>
-        </div>
-        <div className="col-md-3">
-            <div className="card p-2">
-                <div className="d-flex justify-content-between align-items-center p-2">
-                    <div className="flex-column lh-1 imagename"> <span>Air</span> <span>Purifiers</span> </div>
-                    <div> <LazyLoadImage src="https://i.imgur.com/2gvGwbh.png" height="100" width="100" alt="product" effect='blur'/> </div>
-                </div>
-            </div>
-        </div>
+                    
+            ))
+        }
         
         
         

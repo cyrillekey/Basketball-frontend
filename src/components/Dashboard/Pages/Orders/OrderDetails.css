@@ -1,0 +1,343 @@
+.mainbodyOr {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+    overflow: hidden;
+    padding: 20px;
+    
+}
+
+.orderHeader {
+
+    
+    display: flex;
+    flex-direction: row;
+    margin: 28px 125px 29px 17px;
+}
+
+.orderId {
+    margin: 25x 0px 4px 15px;
+}
+
+.mainheader {
+    width: 100%;
+    margin: 0px 32px 0px 32px;
+    border-bottom: solid 1px #677788;
+    
+
+}
+
+.leftIntro {
+    border-bottom: solid 1px black;
+}
+
+.mainheader h2 {
+    color: #1e2022;
+    font-family: sans-serif;
+    font-size: 22.575px;
+    font-weight: 600;
+    line-height: 32px;
+    margin: 0 0 4px;
+    text-align: left;
+}
+
+.delivered {
+    margin: 4px 0 4px 0;
+}
+
+.delivered span {
+    background-color: #00c9a7;
+    border-radius: 5px;
+    color: blacks;
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 10.5px;
+    margin: 0px 0px 0px 16px;
+    padding: 3px 5px;
+    text-align: center;
+}
+
+.orderDate {
+    color: #677788;
+    font-size: 14px;
+    line-height: 22.4px;
+    margin: 4px 0 0 16px;
+    text-align: left;
+}
+
+.orderBody {
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px #f5f5f5;
+}
+
+.leftadmin {
+    flex: 2;
+    border: solid #677788 1px;
+    margin: 37px 40px 0 33px;
+    border-radius: 5px;
+}
+
+.leftHeader {
+    color: #677788;
+
+    font-size: 14px;
+    line-height: 22.4px;
+    padding: 0 15px 8px;
+    text-align: left;
+    margin: 16px 6px 0 6px;
+    border-bottom: solid #677788 1px;
+}
+
+.leftHeader p {
+    margin: 16px 21px 0px 21px;
+    color: #1e2022;
+    font-family: 'Open sans';
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: left;
+}
+
+
+
+.detailsRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.leftrow {
+    flex: 1;
+
+    margin: 0 0 17px 6px;
+}
+
+.rightrow {
+
+    flex: 1;
+    margin: 0 6px 17px 0;
+}
+
+.leftHeading {
+    margin: 8px 15px 0px 15px;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 17px;
+    text-align: left;
+    color: #8a8a8a;
+}
+
+.orderPay,
+.refrenceCode,
+.orderType {
+    margin: 8px 15px 0px 15px;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 17px;
+    color: #8a8a8a;
+    text-align: right;
+    text-transform: capitalize;
+}
+
+.refrenceCode {
+    padding: 8px;
+}
+
+.refrenceCode a {
+    align-items: flex-start;
+    border-color: #01684b;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: #0000 0px 0px 0px 0px;
+    display: inline-block;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    line-height: 19.5px;
+    padding: 7px 10.5px;
+    text-align: center;
+}
+
+.refrenceCode a {
+    align-items: flex-start;
+    border-color: #01684b;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: #0000 0px 0px 0px 0px;
+    display: inline-block;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    line-height: 19.5px;
+    padding: 7px 10.5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.refrenceCode a:hover {
+    color: #fff;
+    background-color: #01684b;
+}
+
+.leftAdminBody {
+    color: #677788;
+    font-size: 14px;
+    line-height: 22.4px;
+    padding: 21px;
+    text-align: left;
+    
+}
+
+.itemo {
+    padding: 0px 0px 0px 80px;
+
+}
+
+.orderDetailItem {
+    margin: 21px 0 0 21px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px #e7eaf3;
+
+}
+
+.bodydetails {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.ordSpec {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.ordImg {
+    margin: 21px 0 0 21px;
+}
+.ordImg img{
+    height: 48px;
+    width: 78px;
+}
+.orderDetailsSummary{
+    margin: 16px 15px 0px 15px;
+}
+.summaryTable{
+    margin-top: 16px;
+}
+.summaryItem{
+    
+    display: flex;
+    flex-direction: row;
+}
+.itemTitle{
+    flex: 1;
+    color: #1e2022;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22.4px;
+    padding: 0px 15px;
+    text-align: right;
+}
+.itemDetails{
+    color: #677788;
+    flex: 1;
+    font-size: 14px;
+    line-height: 22.4px;
+    margin: 0px 0px 12px;
+    padding: 0px 15px;
+    text-align: right;
+}
+.final{
+    border-bottom: solid #677788 1px;
+}
+.change label{
+    color: #1e2022;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19.6px;
+    margin: 0px 0px 8px;
+    text-align: left;
+}
+.change select{
+    align-items: center;
+    padding: 8.75px 14px;
+    font-size: 14px;
+    background-color: #fff;
+    border-color: #e7eaf3;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    color: #000;
+    display: inline-flex;
+    text-align: center;
+}
+.rightadmin {
+    flex: 1;
+    margin: 37px 15px 0 1px;
+    border: solid #676767 1px;
+    border-radius: 5px;
+}
+.rightHeader{
+    align-items: center;
+    
+    display: flex;
+    font-size: 16px;
+    justify-content: space-between;
+    line-height: 22.4px;
+    padding: 16px 21px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: solid 1px #677788;
+}
+.customerHeader{
+    margin: 0px 8px 0px 8px;
+    padding: 21px;
+    text-align: left;
+    font-size: 14px;
+    display: flex;
+    border-bottom: solid 1px grey;
+    
+}
+.customerHeader .avatarc{
+    
+    border-radius: 50%;
+    color: #677788;
+    font-size: 14px;
+    line-height: 22.4px;
+    margin: 0px 16px 0px 0px;
+    text-align: left;
+    
+    
+}
+.customerHeader .cusNam{
+    color: #677788;
+    font-size: 14px;
+    text-align: left;
+    line-height: 22.4px;
+}
+.contactInfo{
+    padding: 8px;
+    color: #677788;
+    
+    font-size: 14px;
+    line-height: 22.4px;
+    text-align: left;
+}
+.contactInfo p,.contactInfo h5{
+    margin:  0px 21px 0px 21px;
+}
+.phead{
+    color: #1e2022 !important;
+}
+@media screen and (max-width:650px) {
+    .orderBody{
+        border: solid red;
+        flex-direction: column;
+    }
+}

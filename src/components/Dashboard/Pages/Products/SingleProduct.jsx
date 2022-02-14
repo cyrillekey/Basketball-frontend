@@ -1,17 +1,28 @@
 import { AirplanemodeActive, CalendarToday, Email, PermIdentity, PhoneAndroid,Publish, PublishOutlined } from '@material-ui/icons'
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import Chart from '../../Charts/Chart'
-import { useParams,Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import data from '../../Charts/Dummy'
+import axios from 'axios'
 export const SingleProduct = () => {
-    const {userId}=useParams();
+    const {product}=useParams();
+    console.log(product);
+    const [SingleProduct, setSingleProduct] = useState([]);
+    useEffect(() => {
+        axios.get("/get-product-by-id/"+product).then(response=>{
+            setSingleProduct(response.data)
+            
+        }).catch(response=>{
+            console.log(response)
+        })
+      
+    }, [])
+    
     return (
         <div className="productDashboard">
             <div className="productTitleContainer">
                 <h1>Product</h1>
-                <Link to="/newProduct">
-                <button className="productAdd">Create</button>
-                </Link>
+                
             </div>
             <div className="productTop">
                 <div className="productTopLeft">
@@ -19,21 +30,29 @@ export const SingleProduct = () => {
                 </div>
                 <div className="productTopRight">
                     <div className="productInfoTop">
-                        <img src="https://fanatics.frgimages.com/FFImage/thumb.aspx?i=/productimages/_4375000/ff_4375583-dc0fb54e7b3d14c59776_full.jpg&w=340" alt="" className="productInfoImage" />
-                        <span className="productName">Lakers Jersey</span>
+                        <img src={SingleProduct.imageUrl} alt="" className="productInfoImage" />
+                        <span className="productName">{SingleProduct.productName}</span>
                     </div>
                     <div className="productInfoBottom">
                         <div className="productInfoItem">
                             <span className="productInfoKey">id:</span>
-                            <span className="productInfoValue">12</span>
+                            <span className="productInfoValue">{SingleProduct.product_id}</span>
                         </div>
                         <div className="productInfoItem">
-                            <span className="productInfoKey">Stock</span>
-                            <span className="productInfoValue">1544</span>
+                            <span className="productInfoKey">Upload date</span>
+                            <span className="productInfoValue">{new Date(SingleProduct.uploadDate).toLocaleDateString()}</span>
                         </div>
                         <div className="productInfoItem">
                             <span className="productInfoKey">Price</span>
-                            <span className="productInfoValue">Kes 450</span>
+                            <span className="productInfoValue">Kes {SingleProduct.productPrice}</span>
+                        </div>
+                        <div className="productInfoItem">
+                            <span className="productInfoKey">Category</span>
+                            <span className="productInfoValue">{SingleProduct.category}</span>
+                        </div>
+                        <div className="productInfoItem">
+                            <span className="productInfoKey">Last purchase</span>
+                            <span className="productInfoValue">{SingleProduct.lastPurchase}</span>
                         </div>
 
                     </div>
@@ -48,11 +67,15 @@ export const SingleProduct = () => {
                         <input type="text" placeholder='145' />
                         <label htmlFor="">Price</label>
                         <input type="text" placeholder='Kes 1450' />
+                        <label htmlFor="">Price</label>
+                        <input type="text" placeholder='Kes 1450' />
+                        <label htmlFor="">Price</label>
+                        <input type="text" placeholder='Kes 1450' />
 
                     </div>
                     <div className="productFormRight">
                         <div className="productUpload">
-                            <img src="" alt="" className="productUploadImage" />
+                            
                             <label htmlFor="file">Image file
                             <PublishOutlined/>
                             </label>

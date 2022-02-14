@@ -30,6 +30,8 @@ const Review=React.lazy(()=>import('./components/Products/Review'));
 const SingleProduct=React.lazy(()=>import('./components/Products/SingleProduct'));
 const Products=React.lazy(()=>import('./components/Products/Products'))
 const Shipping=React.lazy(()=>import('./components/Cart/Shipping'))
+const OrdersLists=React.lazy(()=>import('./components/Dashboard/Pages/Orders/OrdersList'))
+const OrderDetail=React.lazy(()=>import('./components/Dashboard/Pages/Orders/OrderDetailsDash'));
 const App=(props)=> {
   
   return (
@@ -86,9 +88,11 @@ const App=(props)=> {
       <Route path="/admin/dashboard" element={<ProtectedAdmin> <React.Suspense fallback={<Loader/>}><Dashboard children={<Home/>} /></React.Suspense></ProtectedAdmin>}/>
       <Route path="/admin/userslist" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<UserList/>} /></React.Suspense></ProtectedAdmin>}/>
       <Route path="/admin/users/:userId" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<UpdateUser/>} /></React.Suspense></ProtectedAdmin>}/>
-      <Route path="/admin/products" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<ProductsList/>} /></React.Suspense></ProtectedAdmin>}/>
-      <Route path="/admin/singleproduct" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<ProductDashboard/>} /></React.Suspense></ProtectedAdmin>}/>
+      <Route path="/admin/listproducts" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<ProductsList/>} /></React.Suspense></ProtectedAdmin>}/>
+      <Route path="/admin/singleproduct/:product" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<ProductDashboard/>} /></React.Suspense></ProtectedAdmin>}/>
       <Route path="/admin/createproduct" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<NewProduct/>} /></React.Suspense></ProtectedAdmin>}/>
+      <Route path="/admin/orderslist" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<OrdersLists/>}/></React.Suspense></ProtectedAdmin>}/>
+      <Route path='/admin/orderDetail/:id' element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<OrderDetail/>}/></React.Suspense></ProtectedAdmin>} />
       <Route path="/about" element={
         <Layout children={<About/>}/>}/>
 

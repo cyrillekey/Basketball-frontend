@@ -1,7 +1,7 @@
 import { ADD_CART,ADD_PRODUCTS,CHANGE_QTY, CHOOSE_SHIPPING, REMOVE_PRODUCT, SAVE_ADDRESS, SAVE_PACKAGING,SAVE_USER } from "../constants/action-types";
 
 const initialState={
-    
+    user:[],   
     products:[],
     items:[],
     addedItems:[],
