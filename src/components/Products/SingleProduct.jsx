@@ -1,32 +1,38 @@
 import React,{useState,useEffect} from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Auxi from '../hos/Auxi';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from './ProductCard'
 import { addToCart } from '../../actions';
 
+
 const SingleProduct = () => {
+    
     const dispatch = useDispatch();
     const add=(e)=>{
         
         dispatch(addToCart({id:e.target.id,url:'',price:'',qty:parseInt(qty),size:size,sizeId:sizeid}))
     }
-
+    const similar=useSelector(state=>state.products)
     const product=useParams("productId").productId
-    const [singleProduct,setSingleProduct]=useState([]);
+    const [singleProduct,setSingleProduct]=useState({
+        images:[]
+    });
     const [mainImage,setMainImage]=useState();
     const [qty,setQty]=useState(1);
     const [sizeid, setsize] = useState(1);
     const [size,setSizeName]=useState("M");
-    let images=singleProduct.images?singleProduct.images.map(image=>(<img src={image.name} key={image.name} className="img" alt="#"/>)):null
     useEffect(()=>{
+        let isMounted=true
         axios.get("/get-product-by-id/"+product).then(response=>{
-            setSingleProduct(response.data)
-            setMainImage(response.data.imageUrl)
+            console.log(response.data)
+            if(isMounted) setSingleProduct(response.data)
+            if(isMounted) setMainImage(response.data.imageUrl)
         }).catch(response=>{
             console.log(response)
         })
+        return ()=>{isMounted=false}
     },[])
     const handleImageChange=(e)=>{
         setMainImage(e.target.src)
@@ -51,7 +57,7 @@ const SingleProduct = () => {
                                 </div>
                                 <div className="images" onClick={(e)=>handleImageChange(e)}>
                                     {
-                                        images
+                                        singleProduct.images.map(image=>(<img src={image.name} key={image.name} className="img" alt="#"/>))
                                         }
                                     
                                 </div>
@@ -64,7 +70,7 @@ const SingleProduct = () => {
         
 
                             <h2 className="title">{singleProduct.productName}</h2>
-                            <p className="category"><i className="lni lni-tag"></i> Type<a href="">{singleProduct.category}</a></p>
+                            <p className="category"><i className="lni lni-tag"></i> Type:<a href="">{singleProduct.category}</a></p>
                             
                             <p className="info-text">{singleProduct.productDesc}</p>
                             <div className="row">
@@ -141,7 +147,14 @@ const SingleProduct = () => {
         </div>
         <h2 style={{flex:1,textAlign:'center'}}>Similar products</h2>
         <div className="similarProducts">
-        <ProductCard name={singleProduct.productName} pid={singleProduct.product_id} price={singleProduct.productPrice} category={singleProduct.category} url={singleProduct.imageUrl} />
+            {/* {
+               similar.slice(0,4).map(
+                   item=>(
+<ProductCard key={item.product_id} name={item.productName} pid={item.product_id} price={item.productPrice} category={item.category} url={item.imageUrl} />
+                   )
+               )
+            } */}
+        
         </div>
     </section>
         </Auxi>

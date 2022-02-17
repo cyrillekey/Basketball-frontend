@@ -14,6 +14,7 @@ const Home=()=>{
     })
     const auth=Auth;
     useEffect(()=>{
+      let isMounted=true;
         var config = {
             method: 'get',
             url: '/admin/dash-summary',
@@ -24,12 +25,12 @@ const Home=()=>{
           
           axios(config)
           .then(function (response) {
-            setdata(response.data);
+            if(isMounted) setdata(response.data);
           })
           .catch(function (error) {
             console.log(error);
           });
-
+          return (()=>{isMounted=false})
     },[]
     );
     return(

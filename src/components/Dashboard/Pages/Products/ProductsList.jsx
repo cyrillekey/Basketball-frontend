@@ -10,6 +10,7 @@ export const ProductsList = () => {
   
   const [rows, setrows] = useState([]);  
   useEffect(()=>{
+    let isMounted=true
 var config = {
   method: 'get',
   url: '/get-all-products',
@@ -23,11 +24,12 @@ var config = {
 };
 axios(config)
 .then(response=> {
-  setrows(response.data)
+ if(isMounted) setrows(response.data)
 })
 .catch(error=> {
   console.log(error);
 })
+return (()=>{isMounted=false})
   },[rows]);
 const columns = [
   

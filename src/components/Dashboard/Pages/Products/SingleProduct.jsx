@@ -9,13 +9,14 @@ export const SingleProduct = () => {
     console.log(product);
     const [SingleProduct, setSingleProduct] = useState([]);
     useEffect(() => {
+        let isMounted=true;
         axios.get("/get-product-by-id/"+product).then(response=>{
-            setSingleProduct(response.data)
+            if(isMounted) setSingleProduct(response.data)
             
         }).catch(response=>{
             console.log(response)
         })
-      
+     return (()=>{isMounted=false}) 
     }, [])
     
     return (

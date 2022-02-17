@@ -32,6 +32,7 @@ const Products=React.lazy(()=>import('./components/Products/Products'))
 const Shipping=React.lazy(()=>import('./components/Cart/Shipping'))
 const OrdersLists=React.lazy(()=>import('./components/Dashboard/Pages/Orders/OrdersList'))
 const OrderDetail=React.lazy(()=>import('./components/Dashboard/Pages/Orders/OrderDetailsDash'));
+const StaticImages=React.lazy(()=>import('./components/Dashboard/Pages/Settings/StaticImages'))
 const App=(props)=> {
   
   return (
@@ -93,8 +94,8 @@ const App=(props)=> {
       <Route path="/admin/createproduct" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<NewProduct/>} /></React.Suspense></ProtectedAdmin>}/>
       <Route path="/admin/orderslist" element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<OrdersLists/>}/></React.Suspense></ProtectedAdmin>}/>
       <Route path='/admin/orderDetail/:id' element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<OrderDetail/>}/></React.Suspense></ProtectedAdmin>} />
-      <Route path="/about" element={
-        <Layout children={<About/>}/>}/>
+      <Route path="/about" element={<Layout children={<About/>}/>}/>
+      <Route path='/admin/staticImages' element={<ProtectedAdmin><React.Suspense fallback={<Loader/>}><Dashboard children={<StaticImages/>}/> </React.Suspense></ProtectedAdmin>} />
 
       <Route path="*" element={<Layout children={<Error404/>}/>}/>  
       </Routes>

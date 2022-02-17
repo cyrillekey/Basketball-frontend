@@ -1,8 +1,24 @@
-import React from "react";
+import React,{useState} from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 const Products = (props) => {
   const products=useSelector(state=>state.products)
+  const [pagination,setPagination]=useState({
+    currentPage:0,
+    itemsCount:products.length,
+    itemsPerPage:8,
+    pages:Math.floor(products.length/8),
+    currentstart:0,
+  });
+  const handleCLick=(e)=>{
+    e.preventDefault()
+    if(e.target.id=="next"){
+    setPagination({...pagination,currentPage:pagination.currentPage+1,currentstart:pagination.currentstart+Number(pagination.itemsPerPage)})
+    }else if(e.target.id=="prev"){
+      setPagination({...pagination,currentPage:pagination.currentPage-1,currentstart:pagination.currentstart-Number(pagination.itemsPerPage)})
+    }
+    
+  }
   return (
     <div className="product-view">
       <div className="container-fluid">
@@ -77,41 +93,35 @@ const Products = (props) => {
                 </div>
               </div>
               {
-                products.map(product=>(
-                  <ProductCard key={product.product_id} name={product.productName} pid={product.product_id} price={product.productPrice} category={product.category} url={product.imageUrl}/>
+                products.slice(pagination.currentstart,pagination.currentstart+pagination.itemsPerPage).map(product=>(
+                  <ProductCard key={product.product_id} player={product.playerName} name={product.productName} pid={product.product_id} price={product.productPrice} category={product.category} url={product.imageUrl}/>
                 ))
               }
             </div>
             <div className="col-md-12" style={{ marginTop: "20px" }}>
               <nav aria-label="Page navigation example">
                 <ul className="pagination justify-content-center">
+                  {
+                    pagination.currentPage>0?
                   <li className="page-item ">
-                    <a
+                    <a 
+                    id="prev"
                       className="page-link"
-                      href="?page={{products.previous_page_number}}"
-                      tabIndex="-1"
+                      href="/"
+                      onClick={(e)=>handleCLick(e)}
                     >
                       Previous
                     </a>
-                  </li>
-                  <li className="page-item active">
-                    <a className="page-link" href="">
-                      1
-                    </a>
-                  </li>
-                  <li className="page-item active">
-                    <a className="page-link" href="">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
+                  </li>:<li></li>
+                  }
+                  {
                     
-                  </li>
-                  <li className="page-item disabled">
-                    <a className="page-link" href="">
-                      Next
-                    </a>
-                  </li>
+                   pagination.currentPage<pagination.pages? <li className="page-item">
+                   <a id="next" className="page-link" href="/" onClick={(e)=>handleCLick(e)}>
+                     Next
+                   </a>
+                 </li>:<li></li>
+                  }                 
                 </ul>
               </nav>
             </div>

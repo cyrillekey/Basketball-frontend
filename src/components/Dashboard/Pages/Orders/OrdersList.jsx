@@ -43,6 +43,7 @@ const OrdersList = () => {
       ];
     const [orders, setorders] = useState([]);
     useEffect(()=>{
+      let isMounted=true
         let config={
             method:'get',
             url:'/admin/get-all-orders',
@@ -51,10 +52,11 @@ const OrdersList = () => {
             }
         }
         axios(config).then(_res=>{
-            setorders(_res.data);
+           if (isMounted) setorders(_res.data);
         }).catch(_err=>{
             console.log(_err)
         });
+        return (()=>{isMounted=false})
     },[orders]);
   return (
     <div className='userList'>

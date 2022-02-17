@@ -12,19 +12,21 @@ const Homepage=(props)=>{
     const auth=Auth
     const products=useSelector(state=>state.products);
     const [home, sethome] = useState({
+
         banner_url:"",
         banner_small:"",
         carousel_image:[],
         categories:[]
     });
     useEffect(() => {
+        let isMounted=true
       axios.get("/home-page").then(reponse=>{
-          sethome(reponse.data)
+        if (isMounted)  sethome(reponse.data)
       }).catch(error=>{
           console.log("error")
       })
         
-    
+    return (()=>{isMounted=false})
     }, [products]);
     
     
@@ -139,7 +141,7 @@ const Homepage=(props)=>{
             {
                 products.slice(0,4).map(product=>(
                     
-                    <ProductCard key={product.product_id} name={product.productName} pid={product.product_id} price={product.productPrice} category={product.category} url={product.imageUrl}
+                    <ProductCard key={product.product_id} name={product.productName} player={product.playerName} pid={product.product_id} price={product.productPrice} category={product.category} url={product.imageUrl}
                     sizeId={product.list_sizes[0].product_sizes_id} sizeName={product.list_sizes[0].size.size_symbol}
                     />
                     

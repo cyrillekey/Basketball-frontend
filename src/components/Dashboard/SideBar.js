@@ -85,10 +85,12 @@ const SideBar=()=>{
                             <Lock className="sideBarIcon"/>
                             Credentials
                         </li>
+                        <Link to="/admin/staticImages">
                         <li className="sideBarListName ">
                             <Image className="sideBarIcon"/>
                             Static Images
                         </li>
+                        </Link>
                         <li className="sideBarListName">
                             <Code className="sideBarIcon"/>
                             Maintenance mode

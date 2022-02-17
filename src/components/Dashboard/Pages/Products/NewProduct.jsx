@@ -8,13 +8,17 @@ const NewProduct = props => {
         price: "",
         desc: "",
         category: "",
-        Lstock: "",
-        Mstock: "",
-        XLstock: "",
+        Lstock: 0,
+        Mstock: 0,
+        XLstock: 0,
         isFeature: "false",
         Image: null,
         Image1: null,
-        Image2: null
+        Image2: null,
+        Image1Url:null,
+        Image2Url:null,
+        Image3Url:null,
+        player:""
     });
     const [status, setstatus] = useState("Create");
     const changeData = (e) => {
@@ -22,15 +26,15 @@ const NewProduct = props => {
         switch (e.target.name) {
             case "Image":
 
-                setFormData({ ...formData, [e.target.name]: e.target.files[0] })
+                setFormData({ ...formData, [e.target.name]: e.target.files[0] ,Image1Url:URL.createObjectURL(e.target.files[0])})
 
                 break;
             case "Image1":
-                setFormData({ ...formData, [e.target.name]: e.target.files[0] })
+                setFormData({ ...formData, [e.target.name]: e.target.files[0],Image2Url:URL.createObjectURL(e.target.files[0]) })
 
                 break;
             case "Image2":
-                setFormData({ ...formData, [e.target.name]: e.target.files[0] })
+                setFormData({ ...formData, [e.target.name]: e.target.files[0] ,Image3Url:URL.createObjectURL(e.target.files[0])})
 
                 break;
             default:
@@ -44,6 +48,7 @@ const NewProduct = props => {
         console.log(formData)
         let productId = null;
         var data = JSON.stringify({
+            "playerName":formData.player,
             "productName": formData.name,
             "productPrice": formData.price,
             "productDesc": formData.desc,
@@ -130,8 +135,12 @@ const NewProduct = props => {
                     <input type="text" placeholder='Lakers Jersey' name="name" value={formData.name} onChange={(e) => changeData(e)} />
                 </div>
                 <div className="newItem">
+                    <label htmlFor="">Player Name</label>
+                    <input type="text" placeholder='Lebron James' name="player" value={formData.player} onChange={(e) => changeData(e)} />
+                </div>
+                <div className="newItem">
                     <label htmlFor="">Product Price</label>
-                    <input type="number" placeholder='500' name="price" value={formData.price} onChange={(e) => changeData(e)} required />
+                    <input type="number" placeholder='Kes 1500' name="price" value={formData.price} onChange={(e) => changeData(e)} required />
                 </div>
                 <div className="newItem">
                     <label htmlFor="">Description</label>
@@ -147,7 +156,7 @@ const NewProduct = props => {
                 </div>
                 <div className="newItem">
                     <label htmlFor="">Extra Large Stock</label>
-                    <input type="number" placeholder='Lakers Jersey' name="XLstock" value={formData.XLstock} onChange={(e) => changeData(e)} />
+                    <input type="number" placeholder='0' name="XLstock" value={formData.XLstock} onChange={(e) => changeData(e)} />
                 </div>
                 <div className="newItem">
                     <label htmlFor="">Large Size stock count</label>
@@ -155,7 +164,7 @@ const NewProduct = props => {
                 </div>
                 <div className="newItem">
                     <label htmlFor="">Medium Size stock</label>
-                    <input type="number" placeholder='Lakers Jersey' name="Mstock" value={formData.Mstock} onChange={(e) => changeData(e)} />
+                    <input type="number" placeholder='10' name="Mstock" value={formData.Mstock} onChange={(e) => changeData(e)} />
                 </div>
 
 
@@ -170,10 +179,13 @@ const NewProduct = props => {
 
                 <div className="newItem">
                     <label htmlFor="mainImage">Main Image</label>
+                    <img src={formData.Image1Url} alt="imagepreview" width={40}  />    
                     <input type="file" name="Image" onChange={(e) => changeData(e)} />
                     <label htmlFor="">Image 1</label>
+                    <img src={formData.Image2Url} alt="imagepreview" width={40}  />  
                     <input type="file" name="Image1" id="" onChange={(e) => changeData(e)} />
                     <label htmlFor="">Image 2</label>
+                    <img src={formData.Image3Url} alt="imagepreview" width={40}  />  
                     <input type="file" name="Image2" id="" onChange={(e) => changeData(e)} />
                 </div>
 

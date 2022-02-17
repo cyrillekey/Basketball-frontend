@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../actions";
 import { Link } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import {Star} from '@material-ui/icons'
+
 const ProductCard = (props) => {
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
@@ -52,24 +53,26 @@ const ProductCard = (props) => {
         </div>
         <div className="product-info">
           <span className="category">{props.category}</span>
+          <h5 className="title">{props.player}</h5>
           <h4 className="title">
             <Link to={"/product/" + props.pid}>{props.name}</Link>
           </h4>
+          
           <ul className="review">
             <li>
-              <i className="fa fa-star"></i>
+              <Star/>
             </li>
             <li>
-              <i className="fa fa-star"></i>
+            <Star/>
             </li>
             <li>
-              <i className="fa fa-star"></i>
+            <Star/>
             </li>
             <li>
-              <i className="fa fa-star"></i>
+            <Star/>
             </li>
             <li>
-              <i className="fa fa-star"></i>
+            <Star/>
             </li>
             <li>
               <span>5.0 Review(s)</span>

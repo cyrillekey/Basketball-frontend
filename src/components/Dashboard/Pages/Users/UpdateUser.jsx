@@ -1,10 +1,30 @@
 import { AirplanemodeActive, CalendarToday, Email, PermIdentity, PhoneAndroid,Publish } from '@material-ui/icons'
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { useParams,Link } from 'react-router-dom'
+import Auth from '../../../../Auth'
+import axios from 'axios'
 export const UpdateUser = () => {
     const {userId}=useParams();
+    const [user,setUser]=useState([]);
+    useEffect(()=>{
+       let isMounted=true;
+        let config={
+            method:'get',
+            url:`/find-user-by-id/${userId}`,
+            headers:{
+                'Authorization':`Bearer ${Auth.getToken()}`
+            }
+        }
+        axios(config).then(response=>{
+            if(isMounted) setUser(response.data)
+        }).catch(response=>{
+            console.log(response.response)
+        })
+        return ()=>{isMounted=false}
+    },
+    []);
     return (
-        <div class="user">
+        <div className="user">
             <div className="userTitleContainer">
                 <h1 className="userTitle">
                     Edit user
@@ -18,8 +38,9 @@ export const UpdateUser = () => {
                     <div className="userShowTop">
                         <img src="" alt="" className="userShowImage" />
                         <div className="userShowTopTitle">
-                            <div className="userShowUserName">John doe</div>
-                            <div className="userShowStatus">Active</div>
+                            <div className="userShowUserName">{user.username}</div>
+                            <br/>
+                            <div className="userShowStatus">{user.accountTypes}</div>
                         </div>
                     </div>
                     <div className="userShowBottom">
@@ -28,19 +49,19 @@ export const UpdateUser = () => {
                         </span>
                         <div className="userShowInfo">
                         <Email className="userShowIcon"/>
-                        <span className="userShowInfoName">Email: john@mail.com</span>
+                        <span className="userShowInfoName">Email: {user.email}</span>
                         </div>
                         <div className="userShowInfo">
                         <PhoneAndroid className="userShowIcon"/>
-                        <span className="userShowInfoName">Tel: +254708073370</span>
+                        <span className="userShowInfoName">Tel: {user.phoneNumber}</span>
                         </div>
                         <div className="userShowInfo">
                         <CalendarToday className="userShowIcon"/>
-                        <span className="userShowInfoName">Last login: 12/12/2015</span>
+                        <span className="userShowInfoName">Last login: {new Date(user.lasLogin).toLocaleDateString}</span>
                         </div>
                         <div className="userShowInfo">
                         <AirplanemodeActive className="userShowIcon"/>
-                        <span className="userShowInfoName">Status: Active</span>
+                        <span className="userShowInfoName">Status: {user.accountStatus}</span>
                         </div>
                         
                         
@@ -49,33 +70,13 @@ export const UpdateUser = () => {
                 <div className="userCreate">
                     <span className="userUpdateTitle">Edit</span>
                     <form action="" className="updateForm">
-                        <div className="updateLeft">
-                            <div className="updateItem">
-                                <label htmlFor="username">Username</label>
-                                <input type="name" placeholder='enterName' />
-                            </div>
                         
-                        
-                            <div className="updateItem">
-                                <label htmlFor="username">Email</label>
-                                <input type="email" placeholder='enterName' />
-                            </div>
-                        
-                        
-                            <div className="updateItem">
-                                <label htmlFor="username">Phone number</label>
-                                <input type="name" placeholder='enterName' />
-                            </div>
-                            </div>
                         <div className="updateRight">
-                            <div className="updateUpload">
-                                <img src="" alt="" />
-                                <label htmlFor="file">
-                                    <Publish className="updateIcon"/>
-                                </label>
-                                <input type="file" id="file" style={{display:'none',cursor:'pointer'}} />
-                            </div>
-                            <button className="updateButton">Update </button>
+                            
+                            <button className="updateButton">Make Admin </button>
+                            <button className="updateButton">View Orders </button>
+                            <button className="updateButton">View Transactions </button>
+                            <button className="updateButton">Delete user </button>
                         </div>
                     </form>
                 </div>

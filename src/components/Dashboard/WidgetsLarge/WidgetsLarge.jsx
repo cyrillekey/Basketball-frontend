@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 const Button = ({ type }) => {
     return (
         <button className={"widgetLgButton " + type}>{type}</button>
@@ -30,7 +31,7 @@ export const WidgetsLarge = (props) => {
                 </thead>
                 <tbody>
                     {
-                        props.orders.map(order => (
+                        props.orders.splice(0,5).map(order => (
                             <tr className="widgetLgTr" key={order.order_id}>
                                 <td className="widgetLgUser">
                                     {order.orderDate}
@@ -45,8 +46,11 @@ export const WidgetsLarge = (props) => {
                                     KES {order.orderPrice}
                                 </td>
                                 <td className="widgetLgStatus">
+                                <Link to={`/admin/orderDetail/${order.order_id}`}>
                                     <Button type="approved" />
+                                    </Link>
                                 </td>
+                                
                             </tr>
                         ))
                     }

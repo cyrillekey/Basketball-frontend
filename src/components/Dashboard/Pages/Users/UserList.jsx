@@ -34,7 +34,7 @@ export const UserList = () => {
   }
   useEffect(() => {
 
-
+    let isMounted=true
     var config = {
 
       method: 'get',
@@ -46,8 +46,9 @@ export const UserList = () => {
       }
     };
     axios(config).then(response => {
-      setRow(response.data);
+    if(isMounted)  setRow(response.data);
     }).catch(response => { })
+    return (()=>{isMounted=false})
   }, [refresh]);
   const columns = [
     { field: 'user_id', headerName: 'ID', width: 70 },

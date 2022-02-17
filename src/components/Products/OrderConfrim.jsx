@@ -15,14 +15,16 @@ const OrderConfrim = () => {
     const{id}=useParams()
     
     useEffect(()=>{
+        let isMounted=true
         axios.get(`/order-info/${id}`).then(
             response=>{
                 
-                setOrder(response.data)
+               if(isMounted) setOrder(response.data)
                 
             }
         ).catch(response=>{
         });
+        return ()=>{isMounted=false}
     },[]);
     return (
         <Auxi>{

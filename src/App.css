@@ -1155,18 +1155,20 @@ font-size: 0.875rem;
 .single-product .product-info .title a:hover {
   color: #0167F3;
 }
-
-.single-product .product-info .review {
-  margin-top: 5px;
+.review{
+  display: inline;
 }
 
 .single-product .product-info .review li {
-  display: inline-block;
+  display: inline;
+  
+  
 }
 
 .single-product .product-info .review li i {
   color: #fecb00;
-  font-size: 13px;
+  font-size: 10px;
+ 
 }
 
 .single-product .product-info .review li span {

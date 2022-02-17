@@ -97,13 +97,13 @@ const Checkout = () => {
                 
                 
               }).catch(response=>{
-                // axios.get('/delete-order/'+order).then(response=>{
+                 axios.get('/delete-order/'+order).then(response=>{
                   
-                // }).catch(response=>{
+                 }).catch(response=>{
                   
-                // })
-                console.log(response)
-                //setmessage("error occured adding products");
+                 })
+                console.log(response.response)
+                setmessage("error occured adding products");
                 
               });
               
