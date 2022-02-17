@@ -26,7 +26,7 @@ const StaticImages = () => {
     }).then(res=>{
       console.log(res)
     }).catch(res=>{
-      console.log(res)
+      console.log(res.response.data)
     })
   }
   return (
