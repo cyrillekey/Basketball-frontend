@@ -18,8 +18,8 @@ const Homepage=(props)=>{
     const products=useSelector(state=>state.products);
     const [home, sethome] = useState({
 
-        banner_url:"",
-        banner_small:"",
+        banner_url:"https://placeholder.pics/svg/1920",
+        banner_small:"https://placeholder.pics/svg/1920",
         carousel_image:[],
         categories:[]
     });
