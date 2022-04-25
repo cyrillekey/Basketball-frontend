@@ -184,8 +184,10 @@ let Layout=(props)=>{
                                 <Link to="/">Sports<span>Jerseys</span></Link>
                                 </div>
                                 <div className="footer-text">
-                                    <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
-                                    elit,Lorem ipsum dolor sit amet.</p>
+                                    <p>
+                                        Gear up for the nba season with top quality nba wear and celebrate your team as the rise up the ranking. Featuring latest NBA swingman full kits and
+                                        snapback to celebrate yout team and city win.
+                                        </p>
                                 </div>
                                 <div className="footer-social-icon">
                                     <span>Follow us</span>

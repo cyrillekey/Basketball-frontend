@@ -20,6 +20,7 @@ const ProductCard = (props) => {
   
   return (
     <div className="col-lg-3 col-md-6 col-12">
+      
       <div className="single-product">
         <div className="product-image">
           <img
@@ -83,6 +84,7 @@ const ProductCard = (props) => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

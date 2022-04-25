@@ -135,7 +135,7 @@ const OrderConfrim = () => {
                         </div>
                     </div>
                     <p>We will be sending shipping confirmation email when the item shipped successfully!</p>
-                    <p className="font-weight-bold mb-0">Thanks for shopping with us!</p> <span>Nike Team</span>
+                    <p className="font-weight-bold mb-0">Thanks for shopping with us!</p>
                 </div>
                 <div className="d-flex justify-content-between footer p-3"> <span>Need Help? visit our <a href="#"> help center</a></span> <span>{new Date(Date.now()).toLocaleDateString()}</span> </div>
             </div>

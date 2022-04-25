@@ -133,7 +133,7 @@ p {
   font-weight: 500;
   color: #161515;
   -webkit-font-smoothing: antialiased;
-  text-shadow: rgba(0, 0, 0, .01)0 0 1px;
+  text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
 
 }
 
@@ -1155,12 +1155,12 @@ font-size: 0.875rem;
 .single-product .product-info .title a:hover {
   color: #0167F3;
 }
-.review{
-  display: inline;
-}
+
 
 .single-product .product-info .review li {
-  display: inline;
+  align-items: flex-start;
+  
+  display: inline-block;
   
   
 }

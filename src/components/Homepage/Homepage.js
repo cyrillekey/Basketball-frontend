@@ -16,6 +16,46 @@ import small from '../../images/singlet.jpeg';
 const Homepage=(props)=>{
     
     const products=useSelector(state=>state.products);
+    const [expiryTime, setExpiryTime] = useState("12 may 2022 15:30:25");
+    const [countdownTime, setCountdownTime]= useState(
+        {
+            countdownDays:'',
+            countdownHours:'',
+            countdownMinutes:'',
+            countdownSeconds:''
+        }
+    );
+     const countdownTimer=()=>{
+     
+         const timeInterval= setInterval(() => {
+           const countdownDateTime = new Date(expiryTime).getTime(); 
+           const currentTime = new Date().getTime();
+           const remainingDayTime = countdownDateTime - currentTime;
+           const totalDays = Math.floor(remainingDayTime / (1000 * 60 * 60 * 24));
+           const totalHours = Math.floor((remainingDayTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+           const totalMinutes = Math.floor((remainingDayTime % (1000 * 60 * 60)) / (1000 * 60));
+           const totalSeconds = Math.floor((remainingDayTime % (1000 * 60)) / 1000);
+      
+           const runningCountdownTime={
+              countdownDays: totalDays,
+              countdownHours: totalHours,
+              countdownMinutes: totalMinutes,
+              countdownSeconds: totalSeconds
+           }
+        
+           setCountdownTime(runningCountdownTime);
+      
+           if (remainingDayTime < 0) {
+              clearInterval(timeInterval);
+              setExpiryTime(false);
+             }
+      
+          }, 1000);
+     }
+      
+     useEffect(() => {
+         countdownTimer();
+     });
     const [home, sethome] = useState({
 
         banner_url:"https://placeholder.pics/svg/1920",
@@ -38,7 +78,7 @@ const Homepage=(props)=>{
         return(
             <Auxi>
                 
-                <div className="main_slider" style={{backgroundImage:`url(${home.banner_url})`}}>
+                <div className="main_slider" style={{backgroundImage:`url(${'https://res.cloudinary.com/dftgy3yfd/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1650882314/project-290-P9xpYfUpoZI-unsplash_ftxsmf.webp'})`}}>
 <div className="container fill_hight">
     <div className="row align-items-center fill_hight">
         <div className="col">
@@ -208,25 +248,25 @@ const Homepage=(props)=>{
 							<ul className="hot-deal-countdown">
 								<li>
 									<div>
-										<h3>02</h3>
+										<h3>{countdownTime.countdownDays}</h3>
 										<span>Days</span>
 									</div>
 								</li>
 								<li>
 									<div>
-										<h3>10</h3>
+										<h3>{countdownTime.countdownHours}</h3>
 										<span>Hours</span>
 									</div>
 								</li>
 								<li>
 									<div>
-										<h3>34</h3>
+										<h3>{countdownTime.countdownMinutes}</h3>
 										<span>Mins</span>
 									</div>
 								</li>
 								<li>
 									<div>
-										<h3>60</h3>
+										<h3>{countdownTime.countdownSeconds}</h3>
 										<span>Secs</span>
 									</div>
 								</li>
