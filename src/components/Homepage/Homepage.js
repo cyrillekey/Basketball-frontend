@@ -6,10 +6,15 @@ import {useSelector} from 'react-redux'
 import { Carousel } from 'react-bootstrap';
 import {LazyLoadImage} from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
-import Auth from '../../Auth';
+
 import axios from 'axios';
+import snapback from '../../images/snap.jpg';
+import singlet from '../../images/singlet.png';
+import short from '../../images/short.png';
+import jersey from '../../images/jersey.jpeg';
+import small from '../../images/singlet.jpeg';
 const Homepage=(props)=>{
-    const auth=Auth
+    
     const products=useSelector(state=>state.products);
     const [home, sethome] = useState({
 
@@ -93,13 +98,16 @@ const Homepage=(props)=>{
                         <div className="col-lg-12 col-md-6 col-12 md-custom-padding">
 
                             <div className="hero-small-banner"
-                                style={{backgroundImage:`url(${home.banner_small})`}}>
+                                style={{backgroundImage:`url(${small})`}}>
                                 <div className="content">
                                     <h2>
-                                        <span>New line required</span>
-                                        iPhone 12 Pro Max
+                                        <span style={{
+                                            
+                                            fontWeight:'600'
+                                        }}>Hall of Famers</span>
+                                        Hardwood classic jerseys
                                     </h2>
-                                    <h3>ksh 1259.99</h3>
+                                    <h3>ksh 1500</h3>
                                 </div>
                             </div>
 
@@ -108,8 +116,8 @@ const Homepage=(props)=>{
 
                             <div className="hero-small-banner style2">
                                 <div className="content">
-                                    <h2>Weekly Sale!</h2>
-                                    <p>Saving up to 50% off all online store items this week.</p>
+                                    <h2>Clearance Sale!</h2>
+                                    <p>Saving up to 50% off all Clearance sales.</p>
                                     <div className="button">
                                         <a className="btn" href="product-grids.html">Shop Now</a>
                                     </div>
@@ -162,17 +170,28 @@ const Homepage=(props)=>{
     <div className="row mt-2 g-4">
         {
             
-            home.categories.map(item=>(
+            home.categories.map((item)=>{
+                var picture="";
+                if(item==="SNAPBACK"){
+                    picture=snapback;
+                }else if(item==="SINGLET"){
+                    picture=singlet;
+                }else if(item==="SHORT"){
+                    picture=short;
+                }else{
+                    picture=jersey;
+                }
+                return(
                 <div className="col-md-3" key={item}>
                 <div className="card p-2">
                     <div className="d-flex justify-content-between align-items-center p-2">
                         <div className="flex-column lh-1 imagename"> {item} </div>
-                        <div> <LazyLoadImage src="https://i.imgur.com/2gvGwbh.png" height="100" width="100" alt="product" effect='blur'/> </div>
+                        <div> <LazyLoadImage src={picture} height="120" width="120" alt={item} effect='blur'/> </div>
                     </div>
                 </div>
             </div>
-                    
-            ))
+                );
+            })
         }
         
         

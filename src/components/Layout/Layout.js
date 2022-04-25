@@ -6,8 +6,8 @@ import '../../App.css'
 import {useSelector} from "react-redux";
 import {Link} from 'react-router-dom'
 import axios from 'axios';
-import {addProducts, saveAddress} from '../../actions'
-import { AccountCircle, Close, Facebook, Home, Instagram, Search,  ShoppingCart, Twitter,AccountCircleRounded, ExitToApp, Favorite, Store, LocalShipping, FavoriteBorderOutlined, InputOutlined, Telegram, Dashboard } from '@material-ui/icons'
+import {addProducts,} from '../../actions'
+import { AccountCircle, Close, Facebook, Home, Instagram, Search,  ShoppingCart, Twitter,AccountCircleRounded, ExitToApp, Store, LocalShipping, FavoriteBorderOutlined, InputOutlined, Telegram, Dashboard } from '@material-ui/icons'
 import { GridMenuIcon } from '@material-ui/data-grid'
 import Auth from '../../Auth';
 
@@ -95,7 +95,7 @@ let Layout=(props)=>{
                                         </Link>
                                     </li>
                                     {signedin?<li><Link to="/account"><i><AccountCircleRounded/></i></Link></li>:""}
-                                     {signedin && user && user.accountTypes=="ADMIN"?<li id="search"><Link to="/admin/dashboard"><i arial-hidden="true"><Dashboard/></i></Link></li>:""}
+                                     {signedin && user && user.accountTypes==="ADMIN"?<li id="search"><Link to="/admin/dashboard"><i arial-hidden="true"><Dashboard/></i></Link></li>:""}
                                     
                                 </ul>
                                 <div className="hamburger_container"  >
@@ -189,7 +189,7 @@ let Layout=(props)=>{
                                 </div>
                                 <div className="footer-social-icon">
                                     <span>Follow us</span>
-                                    <a href="#"><Facebook/></a>
+                                    <a href="https://www.facebook.com/bbjerseys/?notif_id=1650520615929957&notif_t=page_fan&ref=notif" target={'_blank'}><Facebook/></a>
                                     <a href="#"><Twitter/></a>
                                     <a href="#"><Instagram /></a>
                                 </div>
