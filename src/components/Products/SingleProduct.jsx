@@ -129,10 +129,10 @@ const SingleProduct = () => {
                 <div className="single-block">
                     <div className="row">
                         
-                        <div className="col-lg-6 col-12">
+                        {/* <div className="col-lg-6 col-12">
                             <div className="info-body">
                                 
-                                <h4>Shipping Options:</h4>
+                                <h4>Features:</h4>
                                 <ul className="normal-list">
                                     <li><span>Courier:</span> 2 - 4 days, $22.50</li>
                                     <li><span>Local Shipping:</span> up to one week, $10.00</li>
@@ -140,7 +140,7 @@ const SingleProduct = () => {
                                     <li><span>Unishop Global Export:</span> 3 - 4 days, $25.00</li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
