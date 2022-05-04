@@ -113,7 +113,7 @@ const Homepage=(props)=>{
                                         <Link to={"/product/"+ item.product_id}  
                                         >{item.productName}</Link>
                                     </h2>
-                                    <p style={{color:"white",textTransform:"capitalize"}}>{item.productDesc}</p>
+                                    
                                     <h3><span>Now Only</span> Ksh {item.productPrice}</h3>
                                     <div className="button" onClick={(e)=>{
                                         e.preventDefault();
